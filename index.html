@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENI | Escuela Nacional de Instructores - Formación y Oportunidades</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sena-green-dark: #1e5b2c;
+      --sena-green: #39a900;
+      --sena-green-light: #e8f5e0;
+      --sena-gray: #f4f6f8;
+      --sena-dark: #1d1d1b;
+    }
+
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* Top bar */
+    .top-bar {
+      background-color: var(--sena-green-dark);
+      color: white;
+      font-size: 0.85rem;
+      padding: 0.4rem 0;
+    }
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+    .top-bar a:hover {
+      text-decoration: underline;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      padding: 0.8rem 0;
+    }
+    .navbar-brand img {
+      height: 55px;
+    }
+    .navbar-brand .brand-text {
+      font-weight: 800;
+      color: var(--sena-green-dark);
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+    .navbar-brand .brand-sub {
+      font-size: 0.7rem;
+      color: #666;
+      letter-spacing: 2px;
+    }
+    .nav-link {
+      font-weight: 600;
+      color: var(--sena-dark) !important;
+      margin: 0 0.3rem;
+      transition: color 0.3s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--sena-green) !important;
+    }
+    .btn-sena {
+      background-color: var(--sena-green);
+      color: white;
+      font-weight: 600;
+      border-radius: 25px;
+      padding: 0.5rem 1.5rem;
+      border: none;
+      transition: all 0.3s;
+    }
+    .btn-sena:hover {
+      background-color: var(--sena-green-dark);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .btn-outline-sena {
+      border: 2px solid var(--sena-green);
+      color: var(--sena-green);
+      font-weight: 600;
+      border-radius: 25px;
+      padding: 0.5rem 1.5rem;
+      background: transparent;
+      transition: all 0.3s;
+    }
+    .btn-outline-sena:hover {
+      background-color: var(--sena-green);
+      color: white;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, rgba(30,91,44,0.92), rgba(57,169,0,0.85)), url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 6rem 0 5rem;
+      position: relative;
+    }
+    .hero h1 {
+      font-weight: 800;
+      font-size: 3rem;
+      line-height: 1.2;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      max-width: 650px;
+    }
+    .hero .badge-eni {
+      background-color: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    /* Section titles */
+    .section-title {
+      font-weight: 800;
+      color: var(--sena-green-dark);
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 70px;
+      height: 4px;
+      background-color: var(--sena-green);
+      margin-top: 0.8rem;
+      border-radius: 2px;
+    }
+    .section-subtitle {
+      color: #666;
+      font-size: 1.05rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Mission cards */
+    .mission-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      height: 100%;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-top: 5px solid var(--sena-green);
+    }
+    .mission-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+    .mission-card .icon-box {
+      width: 65px;
+      height: 65px;
+      background-color: var(--sena-green-light);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--sena-green-dark);
+      margin-bottom: 1.2rem;
+    }
+
+    /* Oportunidades */
+    .oportunidad-card {
+      border: none;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+      transition: transform 0.3s, box-shadow 0.3s;
+      height: 100%;
+    }
+    .oportunidad-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    }
+    .oportunidad-card .card-img-top {
+      height: 180px;
+      object-fit: cover;
+    }
+    .oportunidad-card .card-body {
+      padding: 1.5rem;
+    }
+    .oportunidad-card .badge-tipo {
+      background-color: var(--sena-green-light);
+      color: var(--sena-green-dark);
+      font-weight: 600;
+      font-size: 0.75rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 20px;
+    }
+    .oportunidad-card h5 {
+      font-weight: 700;
+      color: var(--sena-dark);
+      margin-top: 0.8rem;
+    }
+
+    /* Stats */
+    .stats-section {
+      background-color: var(--sena-green-dark);
+      color: white;
+      padding: 3.5rem 0;
+    }
+    .stat-item h3 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--sena-green);
+      margin-bottom: 0.2rem;
+    }
+    .stat-item p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      margin: 0;
+    }
+
+    /* Convocatoria */
+    .convocatoria-box {
+      background: linear-gradient(135deg, var(--sena-green-light), #ffffff);
+      border-radius: 20px;
+      padding: 2.5rem;
+      border-left: 8px solid var(--sena-green);
+    }
+
+    /* Noticias */
+    .noticia-card {
+      border: none;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      transition: transform 0.3s;
+      height: 100%;
+    }
+    .noticia-card:hover {
+      transform: translateY(-5px);
+    }
+    .noticia-card img {
+      height: 170px;
+      object-fit: cover;
+    }
+    .noticia-card .fecha {
+      font-size: 0.8rem;
+      color: var(--sena-green);
+      font-weight: 600;
+    }
+
+    /* CTA final */
+    .cta-final {
+      background: linear-gradient(135deg, var(--sena-green-dark), var(--sena-green));
+      color: white;
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+    }
+    .cta-final h2 {
+      font-weight: 800;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--sena-dark);
+      color: #ccc;
+      padding: 3.5rem 0 1.5rem;
+    }
+    footer h6 {
+      color: white;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+    footer a:hover {
+      color: var(--sena-green);
+    }
+    footer .social-icons a {
+      display: inline-flex;
+      width: 38px;
+      height: 38px;
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0.5rem;
+      font-size: 1.1rem;
+      transition: background-color 0.3s;
+    }
+    footer .social-icons a:hover {
+      background-color: var(--sena-green);
+      color: white;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
+      margin-top: 2rem;
+      font-size: 0.85rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero { padding: 4rem 0 3rem; }
+      .stat-item h3 { font-size: 2.2rem; }
+    }
+
+    /* Animaciones scroll */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="container d-flex justify-content-between align-items-center">
+      <span><i class="bi bi-telephone-fill me-1"></i> (601) 546 1500</span>
+      <div>
+        <a href="#"><i class="bi bi-person-fill me-1"></i>Instructores</a>
+        <a href="#"><i class="bi bi-people-fill me-1"></i>Empresas</a>
+        <a href="#"><i class="bi bi-question-circle-fill me-1"></i>Ayuda</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <div class="me-2" style="width:50px;height:50px;background:var(--sena-green);border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.2rem;">ENI</div>
+        <div>
+          <div class="brand-text">ENI</div>
+          <div class="brand-sub">ESCUELA NACIONAL DE INSTRUCTORES</div>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#mision">Misión</a></li>
+          <li class="nav-item"><a class="nav-link" href="#oportunidades">Oportunidades</a></li>
+          <li class="nav-item"><a class="nav-link" href="#convocatorias">Convocatorias</a></li>
+          <li class="nav-item"><a class="nav-link" href="#noticias">Noticias</a></li>
+          <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+            <a href="#convocatorias" class="btn btn-sena">Inscríbete</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <span class="badge-eni"><i class="bi bi-mortarboard-fill me-1"></i> Formación para Instructores</span>
+          <h1 class="mb-3">Transforma vidas a través de la formación profesional</h1>
+          <p class="mb-4">La Escuela Nacional de Instructores (ENI) impulsa el desarrollo de competencias pedagógicas y técnicas para quienes tienen la misión de formar a las nuevas generaciones de Colombia.</p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#oportunidades" class="btn btn-sena btn-lg">Ver oportunidades <i class="bi bi-arrow-right ms-2"></i></a>
+            <a href="#mision" class="btn btn-outline-light btn-lg" style="border-radius:25px;font-weight:600;">Conoce la ENI</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="row text-center g-4">
+        <div class="col-6 col-md-3 stat-item fade-up">
+          <h3>+15.000</h3>
+          <p>Instructores formados</p>
+        </div>
+        <div class="col-6 col-md-3 stat-item fade-up">
+          <h3>+120</h3>
+          <p>Programas de capacitación</p>
+        </div>
+        <div class="col-6 col-md-3 stat-item fade-up">
+          <h3>+500</h3>
+          <p>Aliados estratégicos</p>
+        </div>
+        <div class="col-6 col-md-3 stat-item fade-up">
+          <h3>32</h3>
+          <p>Departamentos cubiertos</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Misión -->
+  <section class="py-5" id="mision" style="background-color: var(--sena-gray);">
+    <div class="container py-4">
+      <div class="text-center mb-5">
+        <h2 class="section-title d-inline-block">Nuestra Misión</h2>
+        <p class="section-subtitle mt-3">Formamos instructores de excelencia para construir el futuro de la formación profesional en Colombia.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4 fade-up">
+          <div class="mission-card">
+            <div class="icon-box"><i class="bi bi-bullseye"></i></div>
+            <h5 class="fw-bold">Formación integral</h5>
+            <p class="text-muted mb-0">Desarrollamos competencias pedagógicas, técnicas y humanas que permiten a los instructores liderar procesos de aprendizaje significativos.</p>
+          </div>
+        </div>
+        <div class="col-md-4 fade-up">
+          <div class="mission-card">
+            <div class="icon-box"><i class="bi bi-lightbulb"></i></div>
+            <h5 class="fw-bold">Innovación educativa</h5>
+            <p class="text-muted mb-0">Promovemos metodologías activas, herramientas digitales y nuevas tecnologías aplicadas a la formación profesional.</p>
+          </div>
+        </div>
+        <div class="col-md-4 fade-up">
+          <div class="mission-card">
+            <div class="icon-box"><i class="bi bi-globe-americas"></i></div>
+            <h5 class="fw-bold">Impacto social</h5>
+            <p class="text-muted mb-0">Contribuimos a la equidad, la productividad y el desarrollo sostenible del país a través de una formación de calidad.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Oportunidades -->
+  <section class="py-5" id="oportunidades">
+    <div class="container py-4">
+      <div class="text-center mb-5">
+        <h2 class="section-title d-inline-block">Oportunidades de Capacitación</h2>
+        <p class="section-subtitle mt-3">Programas diseñados para potenciar tu perfil como instructor.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4 fade-up">
+          <div class="card oportunidad-card">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Pedagogía">
+            <div class="card-body">
+              <span class="badge-tipo">Pedagogía</span>
+              <h5>Diplomado en Formación por Competencias</h5>
+              <p class="text-muted small">Aprende a diseñar y evaluar procesos formativos basados en competencias laborales.</p>
+              <a href="#" class="btn btn-outline-sena btn-sm">Más información</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 fade-up">
+          <div class="card oportunidad-card">
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="TIC">
+            <div class="card-body">
+              <span class="badge-tipo">Tecnología</span>
+              <h5>Curso de Herramientas Digitales para la Enseñanza</h5>
+              <p class="text-muted small">Integra plataformas, simuladores y recursos digitales en tus clases.</p>
+              <a href="#" class="btn btn-outline-sena btn-sm">Más información</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 fade-up">
+          <div class="card oportunidad-card">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Liderazgo">
+            <div class="card-body">
+              <span class="badge-tipo">Liderazgo</span>
+              <h5>Programa de Liderazgo e Innovación Docente</h5>
+              <p class="text-muted small">Fortalece tus habilidades de liderazgo, comunicación y trabajo en equipo.</p>
+              <a href="#" class="btn btn-outline-sena btn-sm">Más información</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 fade-up">
+          <div class="card oportunidad-card">
+            <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Investigación">
+            <div class="card-body">
+              <span class="badge-tipo">Investigación</span>
+              <h5>Seminario de Investigación Aplicada a la Formación</h5>
+              <p class="text-muted small">Desarrolla proyectos de investigación que impacten tu práctica docente.</p>
+              <a href="#" class="btn btn-outline-sena btn-sm">Más información</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 fade-up">
+          <div class="card oportunidad-card">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Bilingüismo">
+            <div class="card-body">
+              <span class="badge-tipo">Idiomas</span>
+              <h5>Curso de Inglés Técnico para Instructores</h5>
+              <p class="text-muted small">Mejora tu competencia comunicativa en contextos técnicos y profesionales.</p>
+              <a href="#" class="btn btn-outline-sena btn-sm">Más información</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 fade-up">
+          <div class="card oportunidad-card">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="Emprendimiento">
+            <div class="card-body">
+              <span class="badge-tipo">Emprendimiento</span>
+              <h5>Formación de Formadores en Emprendimiento</h5>
+              <p class="text-muted small">Acompaña a tus aprendices en la creación y consolidación de sus proyectos.</p>
+              <a href="#" class="btn btn-outline-sena btn-sm">Más información</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Convocatorias -->
+  <section class="py-5" id="convocatorias" style="background-color: var(--sena-gray);">
+    <div class="container py-4">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 fade-up">
+          <h2 class="section-title">Convocatorias Abiertas</h2>
+          <p class="section-subtitle mt-3">Inscríbete y sé parte de la red de instructores más grande del país.</p>
+          <div class="convocatoria-box">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h5 class="fw-bold mb-0">Convocatoria Nacional de Instructores 2025</h5>
+              <span class="badge bg-success">Abierta</span>
+            </div>
+            <p class="text-muted mb-3">Buscamos profesionales apasionados por la enseñanza para cubrir plazas en todas las regiones del país.</p>
+            <ul class="list-unstyled small text-muted mb-4">
+              <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Cierre: 30 de noviembre de 2025</li>
+              <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Modalidad: Presencial y virtual</li>
+              <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Nivel: Técnico, tecnólogo y profesional</li>
+            </ul>
+            <a href="#" class="btn btn-sena">Inscribirme ahora</a>
+          </div>
+        </div>
+        <div class="col-lg-6 fade-up">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Convocatoria" class="img-fluid rounded-4 shadow">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Noticias -->
+  <section class="py-5" id="noticias">
+    <div class="container py-4">
+      <div class="text-center mb-5">
+        <h2 class="section-title d-inline-block">Noticias y Eventos</h2>
+        <p class="section-subtitle mt-3">Mantente al día con las novedades de la ENI.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4 fade-up">
+          <div class="card noticia-card">
+            <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" alt="Noticia">
+            <div class="card-body">
+              <span class="fecha">15 OCT 2025</span>
+              <h6 class="fw-bold mt-1">La ENI inaugura nuevo laboratorio de innovación educativa</h6>
+              <p class="text-muted small mb-0">Un espacio equipado con tecnología de punta para la formación de instructores.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 fade-up">
+          <div class="card noticia-card">
+            <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80" alt="Noticia">
+            <div class="card-body">
+              <span class="fecha">08 OCT 2025</span>
+              <h6 class="fw-bold mt-1">Más de 2.000 instructores se capacitaron en el último trimestre</h6>
+              <p class="text-muted small mb-0">Los programas de la ENI siguen creciendo en cobertura y calidad.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 fade-up">
+          <div class="card noticia-card">
+            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80" alt="Noticia">
+            <div class="card-body">
+              <span class="fecha">01 OCT 2025</span>
+              <h6 class="fw-bold mt-1">Alianza internacional para la formación de formadores</h6>
+              <p class="text-muted small mb-0">La ENI firma convenio con instituciones de América Latina y Europa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Final -->
+  <section class="py-5">
+    <div class="container">
+      <div class="cta-final fade-up">
+        <h2 class="mb-3">¿Listo para ser parte de la ENI?</h2>
+        <p class="mb-4 mx-auto" style="max-width:600px;">Únete a la comunidad de instructores que están transformando la formación profesional en Colombia.</p>
+        <a href="#convocatorias" class="btn btn-light btn-lg fw-bold" style="border-radius:25px;color:var(--sena-green-dark);">Comenzar ahora <i class="bi bi-arrow-right ms-2"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="d-flex align-items-center mb-3">
+            <div class="me-2" style="width:45px;height:45px;background:var(--sena-green);border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;">ENI</div>
+            <div>
+              <div class="text-white fw-bold" style="font-size:1.2rem;">ENI</div>
+              <div style="font-size:0.65rem;letter-spacing:1.5px;color:#999;">ESCUELA NACIONAL DE INSTRUCTORES</div>
+            </div>
+          </div>
+          <p class="small">Formamos a los instructores que construyen el futuro de la formación profesional en Colombia.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-youtube"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h6>La ENI</h6>
+          <a href="#mision">Misión</a>
+          <a href="#mision">Visión</a>
+          <a href="#">Historia</a>
+          <a href="#">Equipo</a>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h6>Formación</h6>
+          <a href="#oportunidades">Programas</a>
+          <a href="#convocatorias">Convocatorias</a>
+          <a href="#">Certificaciones</a>
+          <a href="#">Recursos</a>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h6>Atención</h6>
+          <a href="#">Preguntas frecuentes</a>
+          <a href="#">Contacto</a>
+          <a href="#">PQRS</a>
+          <a href="#">Ayuda</a>
+        </div>
+        <div class="col-lg-2 col-md-6 col-6">
+          <h6>Legal</h6>
+          <a href="#">Términos y condiciones</a>
+          <a href="#">Política de privacidad</a>
+          <a href="#">Tratamiento de datos</a>
+          <a href="#">Mapa del sitio</a>
+        </div>
+      </div>
+      <div class="footer-bottom text-center">
+        <p class="mb-0 small">© 2025 Escuela Nacional de Instructores (ENI). Todos los derechos reservados. Inspirado en el modelo institucional del SENA.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Animación fade-up al hacer scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Smooth scroll para enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Cambiar navbar activo según scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.scrollY >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
